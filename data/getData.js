@@ -8,12 +8,12 @@ module.exports = () => {
         return features;
     }
 
-    const rawData = fs.readFileSync(process.env.JSON_FILE_NAME);
     try {
+        const rawData = fs.readFileSync(process.env.JSON_FILE_NAME);
         features = JSON.parse(rawData).features;
     } catch (e) {
-        features = [];
+        //todo log this
     }
 
-    return features;
+    return features||[];
 };
