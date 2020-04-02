@@ -1,11 +1,15 @@
-const repository = require('../repository');
+const repository = require('./polygonRepository');
 
 const store = (data) => new Promise((resolve, reject) => {
     //todo validation
+
     repository
-        .write(data)
+        .store(data)
         .then(resolve)
-        .catch(reject);
+        .catch(error=> {
+            console.log('error',error);
+            return reject(error);
+        });
 });
 
 module.exports = {
