@@ -10,6 +10,26 @@ const hasName = data => new Promise((resolve, reject) => {
         })
 });
 
+const isPolygon = (data) => new Promise((resolve, reject) => {
+    try {
+        GJV.isPolygon(data, (valid, error) => {
+            if (valid)
+                resolve();
+            else
+                reject({
+                    message: errors.invalidPolygon,
+                    data: error
+                });
+        })
+    } catch (error) {
+        reject({
+            message: errors.invalidPolygon,
+            data: error
+        });
+    }
+});
+
+
 const isFeature = (data) => new Promise((resolve, reject) => {
     try {
         GJV.isFeature(data, (valid, error) => {
@@ -29,9 +49,15 @@ const isFeature = (data) => new Promise((resolve, reject) => {
     }
 });
 
-module.exports = data=>new Promise((resolve,reject)=>{
-    isFeature(data)
-        .then(()=>hasName(data))
-        .then(resolve)
-        .catch(reject)
+module.exports = data => new Promise((resolve, reject) => {
+    if (!data.geometry)
+        reject({
+            message: errors.invalidFeature,
+        });
+    else
+        isPolygon(data.geometry)
+            .then(() => hasName(data))
+            .then(() => isFeature(data))
+            .then(resolve)
+            .catch(reject)
 });
