@@ -9,10 +9,12 @@ const app = express();
 // load PORT from .env file
 const port = process.env.PORT;
 
+//adding middleware
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({extended: true}));
 
-const routes = require('./routes')(app);
+//set routes
+require('./routes')(app);
 
 // launch our server
 app.listen(port, () => console.log(`App is listening at ${port}`));
