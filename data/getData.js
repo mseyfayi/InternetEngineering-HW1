@@ -1,5 +1,6 @@
 require('dotenv').config();
 const fs = require('fs');
+const getDatabasePath = require('./getDatabasePath');
 
 let features;
 
@@ -9,11 +10,11 @@ module.exports = () => {
     }
 
     try {
-        const rawData = fs.readFileSync(process.env.JSON_FILE_NAME);
-        features = JSON.parse(rawData).features;
+        const rawData = fs.readFileSync(getDatabasePath);
+        features = JSON.parse(rawData + '').features;
     } catch (e) {
         //todo log this
     }
 
-    return features||[];
+    return features || [];
 };
