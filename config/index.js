@@ -1,4 +1,4 @@
-const features = require('../data').read();
+const features = require('../repository').read();
 
 module.exports = () => {
     console.log("features:",features);
