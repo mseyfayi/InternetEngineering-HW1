@@ -1,12 +1,11 @@
 const repository = require('../repository');
 
 const getPolygons = () => new Promise((resolve, reject) => {
-    try {
-        const polygons = repository.read().filter(feature => feature.geometry.type === "Polygon");
-        resolve(polygons);
-    }catch (e) {
-        reject(e);
-    }
+        repository
+            .read()
+            .then(polygons => polygons.filter(feature => feature.geometry.type === "Polygon"))
+            .then(resolve)
+            .catch(reject);
 });
 
 module.exports = {

@@ -7,7 +7,9 @@ const store = (data) => new Promise((resolve, reject) => {
             repository
                 .store(data)
                 .then(resolve)
-                .catch(reject))
+                .catch(error => reject({
+                    message: error.message,
+                })))
         .catch(error =>
             reject({
                 status: 422,
