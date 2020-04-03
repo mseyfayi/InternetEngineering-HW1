@@ -216,4 +216,4 @@ fabric.properties
 .idea/jsLibraryMappings.xml
 .idea/misc.xml
 .idea/modules.xml
-featuresCollection.json
+db.json
