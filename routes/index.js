@@ -12,12 +12,10 @@ const appRouter = (app) => {
     setRouters(polygon);
     setRouters(point);
 
-
-    const notFound = (req, res) => {
+    // url not found 404
+    app.all('*', (req, res) => {
         res.status(404).send('Url not found');
-    };
-
-    app.all('*', notFound);
+    });
 };
 
 module.exports = appRouter;
