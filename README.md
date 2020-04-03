@@ -5,8 +5,65 @@
 
 > Internet Engineering Course Homework 1
 
-## Author
+> http://stark-basin-17794.herokuapp.com
 
+## API
+### API Resources
+  - [Add a polygon](#add-a-polygon)
+  - [Test a point](#test-a-point)
+  
+#### Add a polygon
+`PUT /gis/addpolygon`
+
+Request body:
+
+    {
+        "type": "Feature",
+        "properties": {
+      	    "name":"re"
+        },
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+                [
+                    [
+                        10,
+                        10
+                    ],
+                    [
+                        50,
+                        10
+                    ],
+                    [
+                        10,
+                        50
+                    ],
+                    [
+                        10,
+                        10
+                    ]
+                ]
+            ]
+        }
+    }
+
+#### Test a point
+`GET /gis/testpoint`
+
+Query params:
+
+    lat: 10
+    long: 10
+
+Response body:
+
+    {
+        "polygons": [
+            "ret"
+        ]
+    }
+    
+## Author
 👤 **Mohammad Seyfayi**
 
 * Github: [@madsams](https://github.com/madsams)
