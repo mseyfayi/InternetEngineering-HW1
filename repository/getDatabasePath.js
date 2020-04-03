@@ -1,1 +1,1 @@
-module.exports = process.env.JSON_FILE_NAME || 'db.json';
+module.exports =  'db.json';
