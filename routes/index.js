@@ -1,9 +1,4 @@
-const methodNotAllowed = (method) => (req, res) => {
-    console.log(req.method);
-    res.set('Allow', method.toUpperCase());
-    res.status(405);
-    res.send('Method Not Allowed');
-};
+const methodNotAllowed = require('./methodNotAllowed');
 
 const polygon = require('../polygon').routes;
 const point = require('../point').routes;
