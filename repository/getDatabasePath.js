@@ -1,1 +1,1 @@
-module.exports =  './db.json';
+module.exports =  'db.json';
