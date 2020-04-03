@@ -1,7 +1,9 @@
 const controller = require('./polygonController');
 
-const polygonRoutes = (app) => {
-    app.put('/gis/addpolygon', controller.addPolygon);
+const addPoint = {
+    url: '/gis/addpolygon',
+    handler: controller.addPolygon,
+    method: 'put'
 };
 
-module.exports = polygonRoutes;
+module.exports = [addPoint];

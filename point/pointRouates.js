@@ -1,7 +1,9 @@
 const controller = require('./pointController');
 
-const pointRoutes = (app) => {
-    app.get('/gis/testpoint', controller.testPoint);
+const testPoint = {
+    url: '/gis/testpoint',
+    handler: controller.testPoint,
+    method: 'get'
 };
 
-module.exports = pointRoutes;
+module.exports = [testPoint];
