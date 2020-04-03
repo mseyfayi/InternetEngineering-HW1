@@ -21,17 +21,22 @@ module.exports = (req, res, next) => {
         if (chunk)
             chunks.push(chunk);
 
-        const body = Buffer.concat(chunks).toString('utf8');
+        try {
+            const body = Buffer.concat(chunks).toString('utf8');
 
-        const isSuccess = isInFamily(res, 200);
-        const isInternalError = isInFamily(res, 500);
+            const isSuccess = isInFamily(res, 200);
+            const isInternalError = isInFamily(res, 500);
 
-        const messageType = isSuccess ? 'response' : 'error';
-        const logType = isInternalError ? 'error' : (isSuccess ? 'info' : 'warn');
+            const messageType = isSuccess ? 'response' : 'error';
+            const logType = isInternalError ? 'error' : (isSuccess ? 'info' : 'warn');
 
-        logger.log(logType, `${messageType}: ${req.path} ${res.statusCode}`, {body});
+            logger.log(logType, `${messageType}: ${req.path} ${res.statusCode}`, {body});
 
-        oldEnd.apply(res, arguments);
+            oldEnd.apply(res, arguments);
+        }catch (e) {
+            // logger.log('error', 'cannot resolve response',e);
+            console.log(e);
+        }
     };
 
     next();

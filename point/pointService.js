@@ -19,7 +19,11 @@ const testPoint = (params) => new Promise((resolve, reject) => {
         .then(getNameOfPolygonsWithThePoint)
         .then(transformer)
         .then(resolve)
-        .catch(reject);
+        .catch(error =>
+            reject({
+                status: 422,
+                body: error
+            }));
 });
 
 module.exports = {

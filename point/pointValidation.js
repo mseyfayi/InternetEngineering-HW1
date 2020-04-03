@@ -1,17 +1,18 @@
 const errors = require('./pointErrors');
 
 module.exports = params=>new Promise((resolve,reject)=>{
+    const rejectWithMessage = (message) => reject({message});
     if(!params.lat)
-        reject(errors.missed('lat'));
+        rejectWithMessage(errors.missed('lat'));
     if (!params.long)
-        reject(errors.missed('long'));
+        rejectWithMessage(errors.missed('long'));
 
     const lat = Number(params.lat);
     const long = Number(params.long);
     if (Number.isNaN(lat))
-        reject(errors.invalid('lat'));
+        rejectWithMessage(errors.invalid('lat'));
     if (Number.isNaN(long))
-        reject(errors.invalid('long'));
+        rejectWithMessage(errors.invalid('long'));
 
     resolve([lat, long]);
 });
