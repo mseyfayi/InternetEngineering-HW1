@@ -3,6 +3,7 @@ require('dotenv').config();
 require('./config')();
 const express = require('express');
 const bodyParser = require('body-parser');
+const setRoutes = require('./routes');
 
 // create an instance of express to serve our end points
 const app = express();
@@ -14,7 +15,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 //set routes
-require('./routes')(app);
+setRoutes(app);
+
+const logger = require('./logger');
 
 // launch our server
-app.listen(port, () => console.log(`App is listening at ${port}`));
+app.listen(port, () => {
+    logger.log('info', `App is listening at ${port}`);
+});
